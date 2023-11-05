@@ -6,36 +6,37 @@ win = Tk()
 win.maxsize(width=500, height=400)
 win.minsize(width=500, height=400)
 win.title("Dados sobre o Covid-19 no Brasil")
+win.config(bg="#fc4630")
 
-imagem = PhotoImage(file="covid19.png")
-ba = Label(win, image=imagem)
-ba.grid()
-ba.place(bordermode=OUTSIDE, y = -40, x=-20)
 #titulo
-titulo = Label(win, text="DADOS COVID-19")
-titulo["fg"], titulo["bg"] = "white", "blue"
+titulo = Label(win, text="COVID-19 Brazil Tracker",padx=20,pady=20)
+titulo["fg"], titulo["bg"] = "white", "#33242b"
 titulo["font"] = ("arial", "30", "bold")
 titulo.grid()
-titulo.place(bordermode=OUTSIDE, x=75, y=20)
+titulo.place(bordermode=OUTSIDE, x=0, y=0)
 
+Posic = 120
 #casos confirmados
 confirmado = Label(win, text="Confirmados: ")
-confirmado["fg"], confirmado["bg"] = "white", "red"
-confirmado["font"] = ("arial", "25", "bold")
+confirmado["fg"], confirmado["bg"] = "white", "#fc4630"
+confirmado["font"] = ("arial", "25")
 confirmado.grid()
-confirmado.place(bordermode=OUTSIDE, x=20, y=100)
+confirmado.place(bordermode=OUTSIDE, x=20, y=Posic)
+
 #mortes
 mortes = Label(win, text="Mortes: ")
-mortes["fg"], mortes["bg"] = "white", "black"
-mortes["font"] = ("arial", "25", "bold")
+mortes["fg"], mortes["bg"] = "white", "#fc4630"
+mortes["font"] = ("arial", "25")
 mortes.grid()
-mortes.place(bordermode=OUTSIDE, x=20, y=180)
+mortes.place(bordermode=OUTSIDE, x=20, y=Posic+60)
+
 #recuperados
 recuperados = Label(win, text="Recuperados: ")
-recuperados["fg"], recuperados["bg"] = "white", "green"
-recuperados["font"] = ("arial", "25", "bold")
+recuperados["fg"], recuperados["bg"] = "white", "#fc4630"
+recuperados["font"] = ("arial", "25")
 recuperados.grid()
-recuperados.place(bordermode=OUTSIDE, x=20, y=260)
+recuperados.place(bordermode=OUTSIDE, x=20, y=Posic+120)
+
 #pesquisar numeros
 def editar():
     url = requests.get("https://www.worldometers.info/coronavirus/country/brazil/")
@@ -44,9 +45,10 @@ def editar():
     confirmado["text"] = f"Confirmados: {s[0].text[1:-1]}"
     mortes["text"] = f"Mortes: {s[1].text[1:-1]}"
     recuperados["text"] = f"Recuperados: {s[2].text[1:-1]}"
+
 #botão
-atualizar = Button(win, text="Atualizar", command=editar)
-atualizar["fg"], atualizar["bg"] = "white", "blue"
+atualizar = Button(win, text="Atualizar", command=editar, border=0)
+atualizar["fg"], atualizar["bg"] = "white", "#e30842"
 atualizar["font"] = ("arial", "20", "bold")
 atualizar.grid()
 atualizar.place(bordermode=OUTSIDE, x=170, y=324)
